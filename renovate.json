@@ -1,0 +1,48 @@
+{
+    "extends": [
+      "config:base",
+      "docker:enableMajor",
+      ":masterIssue"
+    ],
+    "lockFileMaintenance": {
+      "enabled": true,
+      "schedule": ["at any time"],
+      "stabilityDays": 0,
+      "masterIssueApproval": true
+    },
+    "prHourlyLimit": 0,
+    "separateMinorPatch": true,
+    "semanticCommits": true,
+    "timezone": "Europe/Berlin",
+    "major": {
+      "masterIssueApproval": true
+    },
+    "minor": {
+      "masterIssueApproval": true
+    },
+    "digest": {
+      "extends": ["schedule:daily"],
+      "automerge": true
+    },
+    "packageRules": [
+      {
+        "sourceUrlPrefixes": [
+          "https://github.com/theramis/Snapper"
+        ],
+        "groupName": "snapper packages"
+      },
+      {
+        "packageNames": [
+          "gitlab/gitlab-runner"
+        ],
+        "versionScheme": "regex:^(?<compatibility>.*)-v(?<major>\\d+)\\.(?<minor>\\d+)\\.(?<patch>\\d+)?$"
+      }
+    ],
+    "regexManagers": [
+      {
+        "fileMatch": ["^\\.github/workflows/[^/]+\\.ya?ml$"],
+        "matchStrings": ["uses: (?<depName>[a-z-/]+?)@(?<currentValue>.+?)\\s"],
+        "datasourceTemplate": "github-tags"
+      }
+    ]
+  }
