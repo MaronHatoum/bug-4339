@@ -1,0 +1,1 @@
+FROM traefik:1.7.21-alpine@sha256:0e4ac8ae724603898620dbd5eb9cda7ec05f405d25476eb0d32b716b490ba079
